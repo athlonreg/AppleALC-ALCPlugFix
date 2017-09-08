@@ -1,10 +1,34 @@
+---
+layout:     post
+title:      AppleALC-ALCPlugFix
+subtitle:   简单制作AppleALC驱动声卡并解决耳机、外放切换、麦克风无输入以及耳机杂音问题
+date:       2017-08-29
+author:     athlonreg
+header-img: img/Mac.jpg
+catalog: true
+tags:
+- Hacintosh
+- 黑苹果
+- AppleALC
+- ALCPlugFix
+- 声卡
+---
+
 # AppleALC-ALCPlugFix
+
 简单制作AppleALC驱动声卡并解决耳机、外放切换以及麦克风无输入
-首先下载AppleALC源码，打开终端输入： git clone https://github.com/vit9696/AppleALC 回车之后就将AppleALC下载到了你的用户根目录
+
+首先下载AppleALC源码，打开终端输入： 
+
+    git clone https://github.com/vit9696/AppleALC 
+    
+回车之后就将AppleALC下载到了你的用户根目录
 
 ![ALC-1](http://ovefvi4g3.bkt.clouddn.com/ALC-1-1.png)
 
-然后下载Lilu：链接:http://pan.baidu.com/s/1c2yB3vq 密码:if62
+然后下载Lilu：
+
+    链接:http://pan.baidu.com/s/1c2yB3vq 密码:if62
 
 将下载的Lilu中Debug里面的Lilu.kext放进AppleALC源码根目录，然后删除/AppleALC/Resources中多余文件夹，只留下你的声卡型号文件夹、Pinconfigs.kext以及四个plist文件，以cx20751为例剩下如下文件
 
@@ -48,11 +72,25 @@ where填上桌面，点export就生成AppleALC在桌面上了，一层一层打�
 
 ![ALC-11](http://ovefvi4g3.bkt.clouddn.com/ALC-11-1.png)
 
-如图Audio处写上刚才记下的LayoutID 到这里AppleALC的制作就完了，如果重启后你的声卡不能驱动，就挨个试刚才记录的所有ID，如果能驱动但无法做到插入耳机自动切换，接着往下看： 打开终端，输入 git clone https://github.com/goodwin/ALCPlugFix 回车就将ALCPlugFix下载到了你的用户目录，打开此目录中的 ALCPlugFix 中的 main.m 下拉到最下方，注意这一部分：
+如图Audio处写上刚才记下的LayoutID 到这里AppleALC的制作就完了。
+
+如果重启后你的声卡不能驱动，就挨个试刚才记录的所有ID，如果能驱动但无法做到插入耳机自动切换，接着往下看： 
+
+打开终端，输入 
+
+    git clone https://github.com/goodwin/ALCPlugFix 
+    
+回车就将ALCPlugFix下载到了你的用户目录，打开此目录中的 ALCPlugFix 中的 main.m 下拉到最下方，注意这一部分：
 
 ![ALC-12](http://ovefvi4g3.bkt.clouddn.com/ALC-12-1.png)
 
-下载had-tools,将codec复制到had-tools目录，打开终端，cd到此目录，输入 ./widget_dump.sh codec.txt 回车，此处codec.txt要根据你的codec名字来，回车可以看到以下输出：
+下载had-tools,将codec复制到had-tools目录。
+
+打开终端，cd到此目录，输入： 
+
+    ./widget_dump.sh codec.txt 
+
+回车，此处codec.txt要根据你的codec名字来，回车可以看到以下输出：
 
 ![ALC-13](http://ovefvi4g3.bkt.clouddn.com/ALC-13-1.png)
 
@@ -64,7 +102,15 @@ where填上桌面，点export就生成AppleALC在桌面上了，一层一层打�
 
 ![ALC-15](http://ovefvi4g3.bkt.clouddn.com/ALC-15-1.png)
 
-然后将生成的ALCPlugFix替换alc_fix中的ALCPlugFix，终端cd到alc_fix目录，执行 ./install.sh耳机就可以自动切换了，三节点的朋友运气好的话杂音应该也解决了，这时插入耳机在执行 ./widget_dump.sh codec.txt，就可以发现之前的19和1a后面的数据反过来了
+然后将生成的ALCPlugFix替换alc_fix中的ALCPlugFix，终端cd到alc_fix目录，执行： 
+
+    ./install.sh
+
+耳机就可以自动切换了，三节点的朋友运气好的话杂音应该也解决了，这时插入耳机在执行： 
+
+    ./widget_dump.sh codec.txt 
+
+就可以发现之前的19和1a后面的数据反过来了
 
 ![ALC-16](http://ovefvi4g3.bkt.clouddn.com/ALC-16-1.png)
 
