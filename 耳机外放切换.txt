@@ -1,0 +1,9 @@
+Unsolicited Response的设定是为了解决耳机和外放切换的问题。
+需设定 HP Out at Ext 所在的节点，并且节点信息中有Unsolicited: tag=xx, enabled=1 这一行。
+设定命令为Address+NodeID+708+<设定值>
+
+设定值是8位的一个二进制数，记作a7 a6 a5 a4 a3 a2 a1 a0，推算出此二进制数之后，四四拆分转换为2位的十进制数加1即为此设定值
+
+a7表示enabled。
+a6=0，没具体应用，不用管。
+a5~a0，存放tag。

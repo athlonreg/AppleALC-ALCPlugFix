@@ -284,5 +284,3 @@ git clone https://github.com/goodwin/ALCPlugFix
 [daliansky](https://github.com/daliansky)
 [VoodooHDA](https://sourceforge.net/projects/voodoohda/)
 
-## 写在最后
-> 码字不易，如果觉得文章不错，欢迎打赏，你们的支持是我最大的动力。
