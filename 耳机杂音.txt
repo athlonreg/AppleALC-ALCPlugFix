@@ -1,3 +1,0 @@
-Pin Control Widget的设定是为了解决耳机杂音的。
-需要设定的是 Mic at Ext  所在的节点，设定的值可以从codec dump中读取。
-设定命令是 Address+NodeID+707+Pin-ctls值。
